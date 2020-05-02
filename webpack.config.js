@@ -6,7 +6,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const makeConfig = productionMode => ({
     devtool: "source-map",
-    entry: './src/index.tsx',
+    entry: {
+        todoapp: './src/index.tsx'
+    },
     resolve: {
         extensions: [".ts", ".tsx", ".js"]
     },
@@ -48,7 +50,11 @@ const makeConfig = productionMode => ({
                 enforce: "pre",
                 test: /\.js$/,
                 loader: "source-map-loader"
-            }
+            },
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
+            },
         ]
     }
 })
