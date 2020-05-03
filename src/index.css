@@ -1,7 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Proxima+Nova');
 html {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
     width: 100vw;
     height: 100vh;
+    font-family: proxima-nova, sans-serif;
+}
+
+body {
+    padding: 0;
+    color: rgb(102, 102, 102);
 }

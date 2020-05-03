@@ -33,18 +33,15 @@ const makeConfig = productionMode => ({
             template: './src/index.ejs',
             filename: 'index.html',
             inject: true
-        })     
+        })
     ],
     module: {
-        rules: [
-            {
+        rules: [{
                 test: /\.ts(x?)$/,
                 exclude: /node_modules/,
-                use: [
-                    {
-                        loader: "ts-loader"
-                    }
-                ]
+                use: [{
+                    loader: "ts-loader"
+                }]
             },
             {
                 enforce: "pre",
@@ -54,6 +51,12 @@ const makeConfig = productionMode => ({
             {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+                use: [{
+                    loader: 'file-loader'
+                }]
             },
         ]
     }
