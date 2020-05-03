@@ -12,7 +12,6 @@
     "forceConsistentCasingInFileNames": true,
     "module": "commonjs",
     "resolveJsonModule": true,
-    "isolatedModules": true,
     "noImplicitAny": true,
     "baseUrl": "./",
     "outDir": "./dist",
