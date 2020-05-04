@@ -1,8 +1,9 @@
-import { TodoItem } from "../model/todo-item";
+import { TodoId, TodoItem } from "../model/todo-item";
 import { TodoFilter } from "../model/todo-filter";
 
 export type TodoState = {
     items: TodoItem[];
     activeFilter: TodoFilter;
-    itemsLeft: number
+    itemsLeft: number;
+    editItemId: TodoId | null; 
 };

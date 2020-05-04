@@ -6,7 +6,8 @@ import { TodoFilter } from "../model/todo-filter";
 export const initialState: TodoState = {
     items: [],
     activeFilter: "all",
-    itemsLeft: 0
+    itemsLeft: 0,
+    editItemId: null
 };
 
 export const todoReducer = (state: TodoState = initialState, action: TodoAction): TodoState => {
@@ -20,7 +21,9 @@ export const todoReducer = (state: TodoState = initialState, action: TodoAction)
             }
         },
         UPDATE_ITEM: updatedItem => {
-            const items = state.items.map(item => item.id === updatedItem.id ? updatedItem : item); 
+            const items = state.items.map(
+                item => item.id === updatedItem.id ? updatedItem : item
+            ); 
             return {
                 ...state,
                 items,
@@ -28,13 +31,16 @@ export const todoReducer = (state: TodoState = initialState, action: TodoAction)
             }
         },
         REMOVE_ITEM: id => {
-            const items = state.items.filter(item => item.id !== id);
+            const items = state.items.filter(
+                item => item.id !== id
+            );
             return {
                 ...state,
                 items,
                 itemsLeft: getItemsLeft(items)
             }
         },
+        EDIT_ITEM: id => ({ ...state, editItemId: id }),
         SET_ITEMS: items => ({
             ...state,
             items,

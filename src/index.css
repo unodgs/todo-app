@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Proxima+Nova');
 html {
-    box-sizing: border-box;
     width: 100vw;
     height: 100vh;
     font-family: proxima-nova, sans-serif;
@@ -9,4 +8,8 @@ html {
 body {
     padding: 0;
     color: rgb(102, 102, 102);
+}
+
+* {
+    box-sizing: border-box;
 }
