@@ -4,9 +4,8 @@ import TimeAgo from "react-timeago";
 import { TodoItem } from "../model/todo-item";
 import { CheckBox } from "../components/checkbox";
 import { useDispatch, useSelector } from "react-redux";
-import { editTodo, markCompleted, todoActions } from "../store/todo-actions";
+import { markCompleted, todoActions } from "../store/todo-actions";
 import { RootState } from "../store/store";
-import { Edit } from "../components/edit";
 import { theme } from "../theme";
 import { TodoEdit } from "./todo-edit";
 
