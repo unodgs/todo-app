@@ -1,6 +1,5 @@
 import { makeTodoItem, TodoId, TodoItem } from "../model/todo-item";
 import { TodoService } from "./todo-service";
-import { TodoFilter } from "../model/todo-filter";
 
 export class TodoLocalService implements TodoService {
     private static TODO_LIST_KEY = "todo_list";
@@ -50,19 +49,11 @@ export class TodoLocalService implements TodoService {
         })
     }
 
-    list(filter: TodoFilter): Promise<TodoItem[]> {
+    list(): Promise<TodoItem[]> {
         return new Promise(resolve => {
-            const items = this.getItems().filter(item => {
-                if (filter === "active") {
-                    return !item.completed;
-                } else if (filter === "completed") {
-                    return item.completed;
-                }
-                return item;
-            });
+            const items = this.getItems();
             resolve(items);
         })
     }
-
 
 }

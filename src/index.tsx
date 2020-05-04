@@ -11,7 +11,7 @@ import { loadTodos } from "./store/todo-actions";
 const services = createServices();
 
 const store = configureStore(services);
-store.dispatch(loadTodos("all"));
+store.dispatch(loadTodos());
 
 ReactDOM.render(
     <React.StrictMode>

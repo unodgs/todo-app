@@ -15,9 +15,9 @@ export const todoActions = unionize({
 
 export type TodoAction = UnionOf<typeof todoActions>;
 
-export const loadTodos = (filter: TodoFilter): ThunkResult<Promise<void>> =>
+export const loadTodos = (): ThunkResult<Promise<void>> =>
     async (dispatch, getState, services) => {
-        const items = await services.todoService.list(filter);
+        const items = await services.todoService.list();
         dispatch(todoActions.SET_ITEMS(items));
     };
 
