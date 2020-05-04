@@ -40,6 +40,12 @@ export const editTodo = (id: TodoId, title: string): ThunkResult<Promise<void>> 
         }
     };
 
+export const removeTodo = (id: TodoId): ThunkResult<Promise<void>> => 
+    async (dispatch, getState, services) => {
+        await services.todoService.removeTodo(id);
+        dispatch(todoActions.REMOVE_ITEM(id));
+    }
+
 export const markCompleted = (id: TodoId, completed: boolean): ThunkResult<Promise<void>> =>
     async (dispatch, getState, services) => {
         const item = getState().todo.items

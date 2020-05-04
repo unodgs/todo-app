@@ -4,7 +4,7 @@ import TimeAgo from "react-timeago";
 import { TodoItem } from "../model/todo-item";
 import { CheckBox } from "../components/checkbox";
 import { useDispatch, useSelector } from "react-redux";
-import { markCompleted, todoActions } from "../store/todo-actions";
+import { markCompleted, removeTodo, todoActions } from "../store/todo-actions";
 import { RootState } from "../store/store";
 import { theme } from "../theme";
 import { TodoEdit } from "./todo-edit";
@@ -48,7 +48,7 @@ export const TodoListItem: React.FC<{ item: TodoItem }> = ({ item }) => {
                 hoverColor={theme.mainHoverColor}>
                 <i className="fas fa-times" onClick={() => {
                     dispatch(todoActions.EDIT_ITEM(null));
-                    dispatch(todoActions.REMOVE_ITEM(item.id));
+                    dispatch(removeTodo(item.id));
                 }}/>
             </Box>
         </Row>
