@@ -6,6 +6,6 @@ export const createServices = () => {
     const todoService = new TodoLocalService();
 
     return {
-        todoService,
+        todoService
     };
 };

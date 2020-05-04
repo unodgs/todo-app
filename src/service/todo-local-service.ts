@@ -34,7 +34,9 @@ export class TodoLocalService implements TodoService {
     
     updateTodo(todo: TodoItem): Promise<void> {
         return new Promise(resolve => {
-            const items = this.getItems().map(item => item.id === todo.id ? todo : item);
+            const items = this.getItems().map(
+                item => item.id === todo.id ? todo : item
+            );
             this.saveItems(items);
             resolve();
         });

@@ -1,15 +1,20 @@
 import React from "react";
-import { Row } from "jsxstyle";
-import { Edit, OnEnter, OnEscape } from "../components/edit";
+import { Edit } from "../components/edit";
+import { editTodo, todoActions } from "../store/todo-actions";
+import { useDispatch } from "react-redux";
+import { TodoItem } from "../model/todo-item";
 
 interface TodoEditProps {
-    onEnter: OnEnter;
-    onEscape?: OnEscape;
-    initialValue: string;
+    item: TodoItem;
 }
 
-export const TodoEdit: React.FC<TodoEditProps> = ({ onEnter, onEscape, initialValue }) => {
-    return <Row marginBottom="10px" height="50px">
-        <Edit onEnter={onEnter} onEscape={onEscape} initialValue={initialValue} fontSize={16}/>
-    </Row>;
+export const TodoEdit: React.FC<TodoEditProps> = ({ item }) => {
+    const dispatch = useDispatch();
+
+    return <Edit initialValue={item.title} onEnter={title => {
+        dispatch(editTodo(item.id, title));
+        dispatch(todoActions.EDIT_ITEM(null));
+    }} onEscape={() =>
+        dispatch(todoActions.EDIT_ITEM(null))
+    }/>
 }

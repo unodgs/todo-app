@@ -3,6 +3,7 @@ import { Box, Row } from "jsxstyle";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilter } from "../store/todo-actions";
 import { RootState } from "../store/store";
+import { theme } from "../theme";
 
 interface FilterItemProps {
     title: string;
@@ -16,9 +17,9 @@ const FilterItem: React.FC<FilterItemProps> = ({ title, active, onFilter }) => {
         paddingRight="10px"
         marginRight="5px"
         marginLeft="5px"
-        border={active ? "1px solid green" : "1px solid transparent"}
+        border={active ? `1px solid ${theme.itemBorderColor}` : "1px solid transparent"}
         borderRadius="3px"
-        hoverBackgroundColor="rgba(0, 255, 0, 0.05)"
+        hoverBackgroundColor={theme.itemHoverColor}
         props={{ onClick: onFilter }}>
         {title}
     </Box>
@@ -29,7 +30,7 @@ export const Filters: React.FC = () => {
     const activeFilter = useSelector((state: RootState) => state.todo.activeFilter);
     const itemsLeft = useSelector((state: RootState) => state.todo.itemsLeft);
 
-    return <Row borderTop="1px solid #DADADA" paddingTop="10px" marginTop={10}>
+    return <Row borderTop={`1px solid ${theme.mainColor}`} paddingTop="10px" marginTop={10}>
         <Box width="30%">{`${itemsLeft} items left`}</Box>
         <Row flexGrow={2} justifyContent="center">
             <FilterItem

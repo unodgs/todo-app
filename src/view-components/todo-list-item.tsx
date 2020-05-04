@@ -7,15 +7,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { editTodo, markCompleted, todoActions } from "../store/todo-actions";
 import { RootState } from "../store/store";
 import { Edit } from "../components/edit";
+import { theme } from "../theme";
+import { TodoEdit } from "./todo-edit";
 
 export const TodoListItem: React.FC<{ item: TodoItem }> = ({ item }) => {
     const dispatch = useDispatch();
     const editMode = useSelector((state: RootState) => state.todo.editItemId === item.id);
     
-    return <Col padding="10px 0px" hoverBackgroundColor="rgba(0, 255, 0, 0.05)">
+    return <Col padding="10px 0px" hoverBackgroundColor={theme.itemHoverColor}>
         <Row alignItems="center">
-            <Box paddingLeft={10} textAlign="center" fontSize="24px" color="#DADADA" hoverColor="#AAAAAA">
-                <CheckBox checked={item.completed}  onChange={checked => {
+            <Box
+                paddingLeft={10}
+                textAlign="center"
+                fontSize="24px"
+                color={theme.mainColor}
+                hoverColor={theme.mainHoverColor}>
+                <CheckBox checked={item.completed} onChange={checked => {
                     dispatch(markCompleted(item.id, checked));
                 }}/>
             </Box>
@@ -24,15 +31,22 @@ export const TodoListItem: React.FC<{ item: TodoItem }> = ({ item }) => {
                 paddingLeft="10px"
                 paddingRight="10px"
                 textDecoration={item.completed ? "line-through" : "none"}>
-                {editMode ? <Edit initialValue={item.title} onEnter={title => {
-                    dispatch(editTodo(item.id, title));
-                    dispatch(todoActions.EDIT_ITEM(null));
-                }} onEscape={() => dispatch(todoActions.EDIT_ITEM(null))}/> : item.title}
+                {editMode ? <TodoEdit item={item}/> : item.title}
             </Box>
-            <Box fontSize="18px" paddingRight={10} color="#DADADA" hoverColor="#AAAAAA">
-                <i className="fas fa-edit" onClick={() => dispatch(todoActions.EDIT_ITEM(item.id))}/>
+            <Box
+                fontSize="18px"
+                paddingRight={10}
+                color={theme.mainColor}
+                hoverColor={theme.mainHoverColor}>
+                <i className="fas fa-edit" onClick={
+                    () => dispatch(todoActions.EDIT_ITEM(item.id))
+                }/>
             </Box>
-            <Box fontSize="18px" paddingRight={10} color="#DADADA" hoverColor="#AAAAAA">
+            <Box
+                fontSize="18px"
+                paddingRight={10}
+                color={theme.mainColor}
+                hoverColor={theme.mainHoverColor}>
                 <i className="fas fa-times" onClick={() => {
                     dispatch(todoActions.EDIT_ITEM(null));
                     dispatch(todoActions.REMOVE_ITEM(item.id));
